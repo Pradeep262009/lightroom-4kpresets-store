@@ -52,6 +52,16 @@ Expected output:
 No output
 ```
 
+If you see this error:
+```text
+fatal: remote origin already exists.
+```
+
+Use this instead:
+```bash
+git remote set-url origin https://github.com/your-username/your-repo-name.git
+```
+
 ## 6. Push to GitHub
 ```bash
 git push -u origin main
