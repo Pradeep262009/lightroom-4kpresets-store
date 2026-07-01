@@ -6,6 +6,7 @@ const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0';
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
@@ -366,7 +367,7 @@ app.get('/', (req, res) => {
 app.use(express.static(path.join(__dirname, '.')));
 
 function startServer() {
-  return app.listen(PORT, () => {
+  return app.listen(PORT, HOST, () => {
     console.log(`Server running on http://localhost:${PORT}`);
     console.log('Open index.html through the server or use the browser to visit the page after starting the backend.');
   });
