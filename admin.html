@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(0,212,212,0.2);
+      --text: #f5f7fb;
+      --muted: #94a3b8;
+      --accent: #00d4d4;
+      --accent-2: #0088ff;
+      --danger: #ff7b7b;
+      --success: #7dff98;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, var(--bg) 0%, #11213a 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 { margin: 0; font-size: 28px; }
+
+    .header-actions { display: flex; gap: 12px; align-items: center; }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 700;
+      color: #03111d;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    button.secondary { background: rgba(255,255,255,0.12); color: var(--text); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .card h3 { margin: 0 0 8px; color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .card .value { font-size: 32px; font-weight: 700; }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .status { font-weight: 700; }
+    .status.verified { color: var(--success); }
+    .status.pending { color: var(--danger); }
+
+    .message { margin-top: 12px; color: var(--muted); }
+
+    .empty { color: var(--muted); padding: 20px 0; }
+
+    @media (max-width: 700px) {
+      .page { padding: 16px; }
+      header { flex-direction: column; align-items: flex-start; }
+      h1 { font-size: 24px; }
+      .header-actions { width: 100%; }
+      .header-actions button { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p id="welcome-text">Manage payment orders and download activity.</p>
+      </div>
+      <div class="header-actions">
+        <button id="refresh-btn" type="button">Refresh</button>
+        <button id="logout-btn" class="secondary" type="button">Logout</button>
+      </div>
+    </header>
+
+    <div class="stats-grid">
+      <div class="card">
+        <h3>Payments verified</h3>
+        <div id="payments-count" class="value">0</div>
+      </div>
+      <div class="card">
+        <h3>Downloads</h3>
+        <div id="downloads-count" class="value">0</div>
+      </div>
+      <div class="card">
+        <h3>Active orders</h3>
+        <div id="orders-count" class="value">0</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Status</th>
+            <th>Transaction Ref</th>
+            <th>Email</th>
+            <th>Downloads</th>
+            <th>Created</th>
+            <th>Verified</th>
+            <th>Device</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody id="orders-body">
+          <tr><td colspan="9" class="empty">Loading orders...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="message" class="message"></div>
+  </div>
+
+  <script>
+    const message = document.getElementById('message');
+    const ordersBody = document.getElementById('orders-body');
+
+    function setMessage(text, isError = false) {
+      message.textContent = text;
+      message.style.color = isError ? '#ff7b7b' : '#94a3b8';
+    }
+
+    function formatDate(value) {
+      if (!value) return '—';
+      return new Date(value).toLocaleString();
+    }
+
+    async function loadData() {
+      try {
+        const [statsRes, ordersRes] = await Promise.all([
+          fetch('/api/stats', { credentials: 'include' }),
+          fetch('/api/orders', { credentials: 'include' })
+        ]);
+
+        if (!statsRes.ok || !ordersRes.ok) {
+          throw new Error('Session expired or unauthorized.');
+        }
+
+        const statsData = await statsRes.json();
+        const ordersData = await ordersRes.json();
+
+        document.getElementById('payments-count').textContent = statsData.stats?.paymentsVerified ?? 0;
+        document.getElementById('downloads-count').textContent = statsData.stats?.downloads ?? 0;
+        document.getElementById('orders-count').textContent = statsData.stats?.activeOrders ?? 0;
+
+        const orders = ordersData.orders || [];
+        if (!orders.length) {
+          ordersBody.innerHTML = '<tr><td colspan="9" class="empty">No orders yet.</td></tr>';
+          return;
+        }
+
+        ordersBody.innerHTML = orders.map(order => {
+          const device = order.deviceInfo ? `${order.deviceInfo.browser} / ${order.deviceInfo.os}` : 'Unknown';
+          const location = order.geolocation ? `${order.geolocation.city}, ${order.geolocation.country}` : 'Unknown';
+          return `
+            <tr>
+              <td>${order.orderId || '—'}</td>
+              <td><span class="status ${order.verified ? 'verified' : 'pending'}">${order.verified ? 'Verified' : 'Pending'}</span></td>
+              <td>${order.transactionRef || '—'}</td>
+              <td>${order.email || '—'}</td>
+              <td>${order.downloadCount ?? 0}</td>
+              <td>${formatDate(order.createdAt)}</td>
+              <td>${formatDate(order.verifiedAt)}</td>
+              <td>${device}</td>
+              <td>${location}</td>
+            </tr>
+          `;
+        }).join('');
+
+        setMessage(`Loaded ${orders.length} orders.`);
+      } catch (error) {
+        setMessage(error.message || 'Unable to load admin data.', true);
+        window.location.href = '/login.html';
+      }
+    }
+
+    document.getElementById('refresh-btn').addEventListener('click', loadData);
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      try {
+        const response = await fetch('/api/admin-logout', {
+          method: 'POST',
+          credentials: 'include'
+        });
+        if (!response.ok) {
+          throw new Error('Logout failed.');
+        }
+        window.location.href = '/login.html';
+      } catch (error) {
+        setMessage(error.message || 'Logout failed.', true);
+      }
+    });
+
+    loadData();
+  </script>
+</body>
+</html>

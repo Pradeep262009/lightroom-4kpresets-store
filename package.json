@@ -1,0 +1,15 @@
+{
+  "name": "match-code-payment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal backend to support UPI payment deep-link and verification for a downloadable product.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.4"
+  }
+}

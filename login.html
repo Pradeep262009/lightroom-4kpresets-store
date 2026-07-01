@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #08101f 0%, #0f1d37 100%); font-family: Arial, sans-serif; color: #fff; }
+    .login-card { width: min(420px, 95%); background: rgba(255,255,255,0.05); border: 1px solid rgba(0,212,212,0.18); border-radius: 20px; padding: 32px 28px; box-shadow: 0 20px 60px rgba(0, 212, 212, 0.15); }
+    .login-card h1 { margin-bottom: 10px; font-size: 28px; color: #00d4d4; }
+    .login-card p { color: #a9bdcf; margin-bottom: 28px; font-size: 14px; }
+    .field { margin-bottom: 20px; }
+    .field label { display: block; margin-bottom: 8px; font-size: 13px; color: #b0c7dc; }
+    .field-input {
+      position: relative;
+    }
+    .field input { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: #fff; outline: none; font-size: 15px; }
+    .field input:focus { border-color: #00d4d4; background: rgba(0,212,212,0.12); }
+    .toggle-password {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #a9bdcf;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+    .toggle-password:hover { color: #00d4d4; }
+    .submit-btn { width: 100%; padding: 14px 16px; border: none; border-radius: 12px; background: linear-gradient(135deg, #00d4d4, #0088ff); color: #000; font-weight: 700; cursor: pointer; transition: transform 0.2s ease; }
+    .submit-btn:hover { transform: translateY(-1px); }
+    .message { margin-top: 20px; font-size: 14px; color: #f9f9f9; min-height: 20px; }
+    .message.error { color: #ff7c7c; }
+    .message.success { color: #7cff8a; }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <h1>Admin Login</h1>
+    <p>Enter your credentials to access the admin dashboard.</p>
+    <div class="field">
+      <label for="username">Username</label>
+      <input id="username" type="text" autocomplete="username" placeholder="ENTER THE USERNAME" />
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <div class="field-input">
+        <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" />
+        <button type="button" class="toggle-password" id="toggle-password">Show</button>
+      </div>
+    </div>
+    <button class="submit-btn" id="login-btn">Login</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('toggle-password');
+
+    togglePassword.addEventListener('click', () => {
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        togglePassword.textContent = 'Hide';
+      } else {
+        passwordInput.type = 'password';
+        togglePassword.textContent = 'Show';
+      }
+    });
+
+    document.getElementById('login-btn').addEventListener('click', async () => {
+      const username = document.getElementById('username').value.trim();
+      const password = passwordInput.value.trim();
+      const message = document.getElementById('message');
+      message.textContent = '';
+      message.className = 'message';
+
+      if (!username || !password) {
+        message.textContent = 'Please enter username and password.';
+        message.classList.add('error');
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/admin-login', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          message.textContent = data.message || 'Login failed.';
+          message.classList.add('error');
+          return;
+        }
+        message.textContent = 'Login successful. Redirecting...';
+        message.classList.add('success');
+        window.location.href = '/admin';
+      } catch (err) {
+        message.textContent = 'Unable to reach server.';
+        message.classList.add('error');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>100+ Premium Lightroom 4K Presets - ₹19 Only</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+      min-height: 100vh;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .bg-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(0, 200, 200, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(100, 50, 200, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(0, 200, 200, 0.2);
+    }
+
+    .logo {
+      height: 40px;
+      width: 40px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #00d4d4, #0088ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .site-nav {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .site-nav a {
+      color: #b0b0b0;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .site-nav a:hover {
+      color: #ffffff;
+    }
+
+    .section {
+      margin-top: 50px;
+      padding: 40px 0;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #00d4d4;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .section-grid,
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .feature-card,
+    .how-step {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 200, 200, 0.15);
+      border-radius: 18px;
+      padding: 24px;
+      text-align: left;
+    }
+
+    .feature-card h3,
+    .how-step h3 {
+      margin: 0 0 12px 0;
+      color: #ffffff;
+      font-size: 18px;
+    }
+
+    .feature-card p,
+    .how-step p {
+      color: #b0b0b0;
+      line-height: 1.75;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .how-step span {
+      display: inline-block;
+      margin-bottom: 18px;
+      background: #00d4d4;
+      color: #000;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding: 30px 20px 10px;
+      text-align: center;
+      color: #8a9bb8;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1200px) {
+      .container {
+        max-width: 1000px;
+      }
+
+      .section-grid,
+      .how-grid {
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .site-nav {
+        justify-content: center;
+      }
+
+      .section-grid,
+      .how-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .banner-container,
+      .qr-section,
+      .feature-card,
+      .how-step,
+      .download-section {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .section-title {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 15px;
+      }
+
+      main {
+        padding: 0 16px 30px;
+      }
+
+      header {
+        padding: 18px 0;
+      }
+
+      .site-nav {
+        gap: 12px;
+        font-size: 13px;
+      }
+
+      .price-card {
+        padding: 20px 24px;
+      }
+
+      .qr-section,
+      .download-section,
+      .feature-card,
+      .how-step {
+        padding: 24px 18px;
+      }
+
+      .qr-code {
+        width: 240px;
+        height: 240px;
+      }
+
+      .verify-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .verify-group input,
+      .verify-btn {
+        width: 100%;
+        min-width: auto;
+      }
+
+      .payment-copy-row,
+      .payment-actions {
+        gap: 12px;
+      }
+
+      .payment-copy-row,
+      .payment-actions,
+      .qr-action-row {
+        justify-content: center;
+      }
+    }
+
+    main {
+      padding: 0 20px 40px;
+    }
+
+    .banner-container {
+      margin-top: 30px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 212, 212, 0.2);
+      border: 1px solid rgba(0, 200, 200, 0.3);
+    }
+
+    .banner {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .product-info {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .product-desc {
+      font-size: 16px;
+      color: #b0b0b0;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .price-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .price-card {
+      display: inline-block;
+      padding: 20px 40px;
+      background: rgba(0, 212, 212, 0.1);
+      border: 2px solid rgba(0, 212, 212, 0.5);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .price-label {
+      font-size: 14px;
+      color: #00d4d4;
+      margin: 0 0 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0;
+      color: #ffd700;
+    }
+
+    .price-note {
+      font-size: 13px;
+      color: #888;
+      margin: 8px 0 0 0;
+    }
+
+    .qr-section {
+      margin-top: 50px;
+      padding: 40px;
+      background: rgba(0, 50, 80, 0.5);
+      border: 1px solid rgba(0, 200, 200, 0.3);
+      border-radius: 16px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .qr-section h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+      color: #00d4d4;
+    }
+
+    .qr-section p {
+      font-size: 14px;
+      color: #888;
+      margin: 0 0 30px 0;
+    }
+
+    .qr-wrapper {
+      display: inline-block;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(0, 200, 200, 0.2);
+    }
+
+    .qr-code {
+      width: 280px;
+      height: 280px;
+      image-rendering: pixelated;
+    }
+
+    .qr-action-row {
+      margin: 24px 0 0 0;
+    }
+
+    .payment-copy-row,
+    .payment-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      align-items: center;
+    }
+
+    .payment-copy-row span {
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .payment-actions {
+      margin-top: 18px;
+    }
+
+    .verify-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      align-items: center;
+    }
+
+    .verify-group input {
+      width: 320px;
+      max-width: 100%;
+      padding: 16px 18px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(0, 212, 212, 0.12);
+      border: 1px solid rgba(0, 212, 212, 0.35);
+      border-radius: 12px;
+      outline: none;
+      box-shadow: inset 0 0 16px rgba(0, 212, 212, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .verify-group input::placeholder {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .verify-group input:focus {
+      border-color: #00d4d4;
+      box-shadow: 0 0 0 4px rgba(0, 212, 212, 0.12);
+      background: rgba(0, 212, 212, 0.18);
+    }
+
+    .verify-btn {
+      min-width: 220px;
+    }
+
+    button {
+      padding: 14px 40px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .verify-btn {
+      background: linear-gradient(135deg, #00d4d4, #0088ff);
+      color: #000;
+      box-shadow: 0 8px 24px rgba(0, 212, 212, 0.3);
+    }
+
+    .verify-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 212, 212, 0.5);
+    }
+
+    .verify-note {
+      font-size: 13px;
+      color: #888;
+      margin: 16px 0 0 0;
+    }
+
+    .download-section {
+      margin-top: 50px;
+      padding: 50px 40px;
+      background: linear-gradient(135deg, rgba(0, 212, 212, 0.15), rgba(0, 136, 255, 0.15));
+      border: 2px solid rgba(0, 212, 212, 0.5);
+      border-radius: 16px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      animation: slideIn 0.5s ease-out;
+      display: none;
+    }
+
+    .download-section.show {
+      display: block;
+    }
+
+    .download-emoji {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .download-section h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #00d4d4;
+    }
+
+    .download-section p {
+      font-size: 16px;
+      color: #b0b0b0;
+      margin: 0 0 30px 0;
+    }
+
+    .download-btn {
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: #000;
+      padding: 16px 50px;
+      font-size: 18px;
+      font-weight: 700;
+      box-shadow: 0 12px 40px rgba(255, 215, 0, 0.4);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 50px rgba(255, 215, 0, 0.6);
+    }
+
+    .download-info {
+      font-size: 13px;
+      color: #666;
+      margin: 20px 0 0 0;
+      line-height: 1.8;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .price {
+        font-size: 36px;
+      }
+
+      .qr-code {
+        width: 200px;
+        height: 200px;
+      }
+
+      .download-section {
+        padding: 30px 20px;
+      }
+
+      .download-section h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-elements"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <img src="logo.jpg" alt="Your Brand Logo" class="logo">
+      <span class="brand-name">Match Code Digital</span>
+      <nav class="site-nav">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it Works</a>
+        <a href="#payment">Pay Now</a>
+        <a href="#download-section">Download</a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Banner -->
+      <div class="banner-container">
+        <img src="banner.png" alt="Product Banner" class="banner">
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <h1>100+ Premium Lightroom Presets</h1>
+        <p class="product-desc">Experience a professional transformation with 100+ Premium Lightroom Presets designed to give your photos a regal, sophisticated finish. Elevate your images to high-end editorial status with luxurious tones and timeless aesthetics that capture pure elegance in every click 👑✨</p>
+      </div>
+
+      <!-- Price Section -->
+      <div class="price-section">
+        <div class="price-card">
+          <p class="price-label">Limited Time Offer</p>
+          <p class="price">₹19</p>
+          <p class="price-note">One-time purchase • Lifetime access</p>
+        </div>
+      </div>
+
+      <section class="section" id="features">
+        <h2 class="section-title">Why premium presets?</h2>
+        <div class="section-grid">
+          <div class="feature-card">
+            <h3>Professional finish</h3>
+            <p>Designed for photographers who want rich, cinematic tones and polished shadows without editing complexity.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Easy install</h3>
+            <p>Import these presets into Lightroom in minutes and apply them to any image for instant enhancement.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Works for all styles</h3>
+            <p>Includes looks for portraits, lifestyle, travel, fashion, and cinematic photography with one-click consistency.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how-it-works">
+        <h2 class="section-title">How it works</h2>
+        <div class="how-grid">
+          <div class="how-step">
+            <span>Step 1</span>
+            <h3>Scan or open UPI</h3>
+            <p>Use the FamPay QR code or tap Open UPI App to start your payment securely.</p>
+          </div>
+          <div class="how-step">
+            <span>Step 2</span>
+            <h3>Enter transaction ref</h3>
+            <p>After payment, paste the UPI transaction reference into the verification field and confirm.</p>
+          </div>
+          <div class="how-step">
+            <span>Step 3</span>
+            <h3>Get instant access</h3>
+            <p>Once verified, the download button becomes available and redirects you to the preset package.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- QR Code Section -->
+      <div class="qr-section" id="payment">
+        <h2>Scan to Pay with FamPay</h2>
+        <p>Use any UPI app (Google Pay, PhonePe, Paytm, etc.)</p>
+
+        <div class="qr-wrapper">
+          <img src="fampay-qr.jpg" alt="FamPay UPI QR Code" class="qr-code">
+        </div>
+
+        <div class="qr-action-row">
+          <button id="download-qr-btn" class="verify-btn" type="button">Download QR Image</button>
+        </div>
+
+        <div class="payment-info">
+          <p class="payment-label">UPI ID</p>
+          <div class="payment-copy-row">
+            <span id="upi-uri">6383617697@fam</span>
+            <button id="copy-upi-btn" class="verify-btn" type="button">Copy UPI ID</button>
+          </div>
+          <div class="payment-actions">
+            <button id="open-upi-btn" class="verify-btn" type="button">Open UPI App</button>
+          </div>
+          <p class="payment-note">If the app does not open, scan the FamPay QR code or copy the UPI ID.</p>
+        </div>
+
+        <div class="verify-group">
+          <input id="customer-email" type="email" placeholder="Enter your email address (optional)" />
+          <input id="transaction-ref" type="text" placeholder="Enter transaction ref / UPI reference" />
+          <button id="verify-btn" class="verify-btn">Verify Payment</button>
+          <p class="verify-note" id="verify-note"></p>
+        </div>
+      </div>
+
+      <!-- Download Section -->
+      <div class="download-section" id="download-section">
+        <div class="download-emoji">🎉</div>
+        <h2>Payment Received!</h2>
+        <p>Your presets are ready to download. Click the button below to get instant access.</p>
+        <button id="download-btn" class="download-btn" type="button">📥 Download Presets Now</button>
+        <div class="download-info">
+          • Opens Google Drive in a new tab<br>
+          • Extract the ZIP file on your computer<br>
+          • Import presets into Lightroom
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>Match Code Digital — 100+ Premium Lightroom Presets delivered instantly after UPI payment.</p>
+        <p>Secure payment powered by FamPay and supported by real-time backend verification.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    let currentOrderId = null;
+    let currentUpiUri = null;
+
+    const upiUriElement = document.getElementById('upi-uri');
+    const verifyBtn = document.getElementById('verify-btn');
+    const verifyNote = document.getElementById('verify-note');
+    const transactionInput = document.getElementById('transaction-ref');
+    const openUpiBtn = document.getElementById('open-upi-btn');
+    const copyUpiBtn = document.getElementById('copy-upi-btn');
+    const downloadQrBtn = document.getElementById('download-qr-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const downloadSection = document.getElementById('download-section');
+
+    async function createPaymentRequest() {
+      try {
+        const response = await fetch('/api/create-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await response.json();
+        if (!data.success) {
+          throw new Error(data.message || 'Unable to create payment request.');
+        }
+
+        currentOrderId = data.orderId;
+        currentUpiUri = data.upiUri;
+        const upiId = '6383617697@fam';
+        upiUriElement.textContent = upiId;
+        openUpiBtn.disabled = false;
+        copyUpiBtn.disabled = false;
+        downloadQrBtn.disabled = false;
+
+        openUpiBtn.onclick = () => {
+          window.location.href = currentUpiUri;
+        };
+
+        copyUpiBtn.onclick = async () => {
+          const copyText = upiId;
+          try {
+            await navigator.clipboard.writeText(copyText);
+            copyUpiBtn.textContent = 'Copied';
+            setTimeout(() => { copyUpiBtn.textContent = 'Copy UPI ID'; }, 1500);
+          } catch (_err) {
+            alert('Copy failed. Please copy manually.');
+          }
+        };
+
+        downloadQrBtn.onclick = () => {
+          const link = document.createElement('a');
+          link.href = 'fampay-qr.jpg';
+          link.download = 'fampay-qr.jpg';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        };
+      } catch (error) {
+        upiUriElement.textContent = 'Unable to load payment details. Please reload the page.';
+        verifyNote.textContent = error.message;
+        verifyNote.style.color = '#e65555';
+        verifyNote.style.display = 'block';
+      }
+    }
+
+    function parseUpiId(uri) {
+      try {
+        const params = new URLSearchParams(uri.split('?')[1]);
+        return params.get('pa');
+      } catch {
+        return null;
+      }
+    }
+
+    async function verifyPayment() {
+      const transactionRef = transactionInput.value.trim();
+      const email = document.getElementById('customer-email').value.trim();
+      
+      if (!currentOrderId) {
+        verifyNote.textContent = 'Payment session is not ready yet. Reload the page if this continues.';
+        verifyNote.style.color = '#e65555';
+        verifyNote.style.display = 'block';
+        return;
+      }
+
+      if (!transactionRef) {
+        verifyNote.textContent = 'Please enter the UPI transaction reference before verification.';
+        verifyNote.style.color = '#e65555';
+        verifyNote.style.display = 'block';
+        return;
+      }
+
+      verifyBtn.disabled = true;
+      verifyBtn.style.opacity = '0.7';
+      verifyNote.textContent = 'Verifying payment…';
+      verifyNote.style.color = '#333';
+      verifyNote.style.display = 'block';
+
+      try {
+        const response = await fetch('/api/verify-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            orderId: currentOrderId, 
+            transactionRef,
+            email: email || null
+          })
+        });
+
+        const data = await response.json();
+        if (!data.success) {
+          throw new Error(data.message || 'Verification failed.');
+        }
+
+        verifyNote.textContent = data.message;
+        verifyNote.style.color = '#0d6b00';
+        verifyNote.style.display = 'block';
+        downloadSection.classList.add('show');
+        downloadBtn.onclick = () => {
+          window.open(data.downloadUrl, '_blank');
+        };
+
+        setTimeout(() => {
+          downloadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+      } catch (error) {
+        verifyNote.textContent = error.message;
+        verifyNote.style.color = '#e65555';
+      } finally {
+        verifyBtn.disabled = false;
+        verifyBtn.style.opacity = '1';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      openUpiBtn.disabled = true;
+      copyUpiBtn.disabled = true;
+      downloadQrBtn.disabled = true;
+      downloadSection.classList.remove('show');
+      verifyBtn.addEventListener('click', verifyPayment);
+      createPaymentRequest();
+    });
+  </script>
+</body>
+</html>
